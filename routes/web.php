@@ -21,17 +21,24 @@ use Illuminate\Support\Facades\Route;
 
 // Guest routes
 
-Route::get('/', function () {
-    return view('home');
-})->name('home')->middleware('sitemapped');
+Route::get('/', [App\Http\Controllers\LocaleController::class, 'redirect']);
 
-Route::get('/terms-of-service', function () {
-    return view('pages.terms-of-service');
-})->name('terms-of-service')->middleware('sitemapped');
+Route::prefix('{locale}')->where(['locale' => '([a-z]{2})'])->group(function () {
+    Route::get('/', function () {
+        return view('home');
+    })->name('home')->middleware('sitemapped');
 
-Route::get('/privacy-policy', function () {
-    return view('pages.privacy-policy');
-})->name('privacy-policy')->middleware('sitemapped');
+    Route::get('/terms-of-service', function () {
+        return view('pages.terms-of-service');
+    })->name('terms-of-service')->middleware('sitemapped');
+
+    Route::get('/privacy-policy', function () {
+        return view('pages.privacy-policy');
+    })->name('privacy-policy')->middleware('sitemapped');
+});
+
+Route::get('/locale/{locale}', [App\Http\Controllers\LocaleController::class, 'change'])
+    ->name('locale.change');
 
 // Auth routes
 

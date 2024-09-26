@@ -34,9 +34,9 @@ class DashboardPanelProvider extends PanelProvider
                 MenuItem::make()
                     ->label(__('Admin Panel'))
                     ->visible(
-                        fn () => auth()->user()->isAdmin()
+                        fn() => auth()->user()->isAdmin()
                     )
-                    ->url(fn () => route('filament.admin.pages.dashboard'))
+                    ->url(fn() => route('filament.admin.pages.dashboard'))
                     ->icon('heroicon-s-cog-8-tooth'),
             ])
             ->discoverResources(in: app_path('Filament/Dashboard/Resources'), for: 'App\\Filament\\Dashboard\\Resources')
@@ -59,6 +59,7 @@ class DashboardPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                \App\Http\Middleware\SetLocale::class,
             ])
             ->renderHook('panels::head.start', function () {
                 return view('components.layouts.partials.analytics');
@@ -73,9 +74,9 @@ class DashboardPanelProvider extends PanelProvider
                         hasAvatars: false, // Enables the avatar upload form component (default = false)
                         slug: 'my-profile' // Sets the slug for the profile page (default = 'my-profile')
                     )
-                ->myProfileComponents([
-                    \App\Livewire\AddressForm::class,
-                ])
+                    ->myProfileComponents([
+                        \App\Livewire\AddressForm::class,
+                    ])
             ]);
     }
 }

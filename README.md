@@ -43,11 +43,31 @@ git push origin main
 git reset --soft <commit-id>
 git push origin main --force
 ```
+
 2. Datenbank erneuern und seeden:
 ```
 php artisan migrate:refresh --seed
 ```
 
+3. Controller erstellen
+```
+php artisan make:controller DummyController
+```
+
+4. Middleware erstellen
+```
+php artisan make:middleware DummyController
+```
+
+5. Events auflisten
+```
+php artisan event:list
+```
+
+6. Listner hinzufügen
+```
+php artisan make:listener Dummy --event=Illuminate\Auth\Events\Login
+```
 
 ## Erweiterungen & Funktionen
 ### Blog und Roadmap aus saasykit/saasykit entfernen
@@ -192,4 +212,43 @@ database\seeders\DatabaseSeeder.php
 ```
 app\Http\Controllers\Auth\LoginController.php
 + return redirect()->route('filament.dashboard.pages.dashboard');
+```
+
+### Localization
+Middleware hinzufügen und registieren
+```
++ app\Http\Middleware\SetLocale.php
+
+bootstrap\app.php
++ \App\Http\Middleware\SetLocale::class,
+
+app\Providers\Filament\AdminPanelProvider.php
++ \App\Http\Middleware\SetLocale::class,
+
+app\Providers\Filament\DashboardPanelProvider.php
++ \App\Http\Middleware\SetLocale::class,
+```
+
+Controller hinzufügen und in den routes definieren
+```
++ app\Http\Controllers\LocaleController.php
+
+routes\web.php
++ Route::get('/', [App\Http\Controllers\LocaleController::class, 'redirect']);
+
++ Route::prefix('{locale}')->where(['locale' => '([a-z]{2})'])->group(function () {});
+
++ Route::get('/locale/{locale}', [App\Http\Controllers\LocaleController::class, 'change'])
+    ->name('locale.change');
+```
+
+Datenbank erweitern
+```
+database\migrations\2024_09_26_123117_add_locale_column_to_users_table.php
+```
+
+Listener erstellen
+```
++ app\Listeners\SetLocaleAfterLogin.php
++ app\Listeners\SetLocaleAfterRegistered.php
 ```
