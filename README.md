@@ -278,3 +278,12 @@ Test
 ```
 tests\Feature\Custom\LocaleTest.php
 ```
+
+### Redirect zum Dashboard nach product und subscription-thank-you
+```
+resources\views\checkout\product-thank-you.blade.php
++ <x-button-link.primary href="{{ route('filament.dashboard.pages.dashboard') }}" class="mt-4 mx-auto">
+
+resources\views\checkout\subscription-thank-you.blade.php
++ <x-button-link.primary href="{{ route('filament.dashboard.pages.dashboard') }}" class="mt-4 mx-auto">
+```

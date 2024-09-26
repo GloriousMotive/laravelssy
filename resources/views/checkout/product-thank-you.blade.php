@@ -11,7 +11,7 @@
                     {{ __('Your order is being processed and you will receive an email with your order details shortly.') }}
                 </p>
 
-                <x-button-link.primary href="{{ route('home') }}" class="mt-4 mx-auto">
+                <x-button-link.primary href="{{ route('filament.dashboard.pages.dashboard') }}" class="mt-4 mx-auto">
                     {{ __('Start Your Journey') }}
                 </x-button-link.primary>
 
