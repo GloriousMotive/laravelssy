@@ -60,7 +60,6 @@ class GeneralSettings extends Component implements HasForms
             'social_links_youtube' => $this->configManager->get('app.social_links.youtube') ?? '',
             'social_links_github' => $this->configManager->get('app.social_links.github') ?? '',
             'social_links_discord' => $this->configManager->get('app.social_links.discord') ?? '',
-            'roadmap_enabled' => $this->configManager->get('app.roadmap_enabled', true),
             'recaptcha_enabled' => $this->configManager->get('app.recaptcha_enabled', false),
             'recaptcha_api_site_key' => $this->configManager->get('recaptcha.api_site_key', ''),
             'recaptcha_api_secret_key' => $this->configManager->get('recaptcha.api_secret_key', ''),
@@ -130,7 +129,7 @@ class GeneralSettings extends Component implements HasForms
                                 ->options(function () {
                                     $currencies = [];
                                     foreach (Currency::all() as $currency) {
-                                        $currencies[$currency->code] = $currency->name.' ('.$currency->code.')';
+                                        $currencies[$currency->code] = $currency->name . ' (' . $currency->code . ')';
                                     }
 
                                     return $currencies;
@@ -198,14 +197,6 @@ class GeneralSettings extends Component implements HasForms
                             Toggle::make('show_transactions')
                                 ->label(__('Show Transactions'))
                                 ->helperText(__('If enabled, customers will be able to see their transactions on the dashboard.'))
-                                ->required(),
-                        ]),
-                    Tabs\Tab::make(__('Roadmap'))
-                        ->icon('heroicon-o-bug-ant')
-                        ->schema([
-                            Toggle::make('roadmap_enabled')
-                                ->label(__('Roadmap Enabled'))
-                                ->helperText(__('If enabled, the roadmap will be visible to the public.'))
                                 ->required(),
                         ]),
                     Tabs\Tab::make(__('Recaptcha'))

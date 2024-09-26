@@ -35,20 +35,17 @@ class AdminPanelProvider extends PanelProvider
                 MenuItem::make()
                     ->label(__('User Dashboard'))
                     ->visible(
-                        fn () => true
+                        fn() => true
                     )
-                    ->url(fn () => route('filament.dashboard.pages.dashboard'))
+                    ->url(fn() => route('filament.dashboard.pages.dashboard'))
                     ->icon('heroicon-s-face-smile'),
             ])
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')
             ->viteTheme('resources/css/filament/admin/theme.css')
-            ->pages([
-
-            ])
+            ->pages([])
             ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\\Filament\\Admin\\Widgets')
-            ->widgets([
-            ])
+            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -79,14 +76,6 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('Settings')
                     ->icon('heroicon-s-cog')
-                    ->collapsed(),
-                NavigationGroup::make()
-                    ->label('Blog')
-                    ->icon('heroicon-s-newspaper')
-                    ->collapsed(),
-                NavigationGroup::make()
-                    ->label('Roadmap')
-                    ->icon('heroicon-s-bug-ant')
                     ->collapsed(),
             ])
             ->plugins([

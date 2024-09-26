@@ -183,8 +183,6 @@ return [
         'dark' => 'images/logo-dark.png',
     ],
 
-    'roadmap_enabled' => true,
-
     'recaptcha_enabled' => false,
 
     'multiple_subscriptions_enabled' => false,

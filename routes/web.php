@@ -93,20 +93,6 @@ Route::get('/subscription/change-plan-thank-you', [
 ])->name('subscription.change-plan.thank-you')->middleware('auth');
 
 // blog
-Route::get('/blog/{slug}', [
-    App\Http\Controllers\BlogController::class,
-    'view',
-])->name('blog.view');
-
-Route::get('/blog', [
-    App\Http\Controllers\BlogController::class,
-    'all',
-])->name('blog')->middleware('sitemapped');
-
-Route::get('/blog/category/{slug}', [
-    App\Http\Controllers\BlogController::class,
-    'category',
-])->name('blog.category');
 
 Route::get('/terms-of-service', function () {
     return view('pages.terms-of-service');
@@ -137,23 +123,6 @@ Route::get('/checkout/product/success', [
     App\Http\Controllers\ProductCheckoutController::class,
     'productCheckoutSuccess',
 ])->name('checkout.product.success')->middleware('auth');
-
-// roadmap
-
-Route::get('/roadmap/suggest', [
-    App\Http\Controllers\RoadmapController::class,
-    'suggest',
-])->name('roadmap.suggest')->middleware('auth');
-
-Route::get('/roadmap', [
-    App\Http\Controllers\RoadmapController::class,
-    'index',
-])->name('roadmap');
-
-Route::get('/roadmap/i/{itemSlug}', [
-    App\Http\Controllers\RoadmapController::class,
-    'viewItem',
-])->name('roadmap.viewItem');
 
 // Invoice
 
