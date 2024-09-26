@@ -1,33 +1,29 @@
 # pornmgr.com
 ## Installation
-### Git
-Um das SaasyKit als Basis zu verwenden, wird zuerst ein neues GitHub-Repository erstellt und anschließend das SaasyKit als Basis definiert:
+1. Um das SaasyKit als Basis zu verwenden, wird zuerst ein neues GitHub-Repository erstellt und anschließend das SaasyKit als Basis definiert:
 ```
 git remote add upstream https://github.com/saasykit/saasykit
 git remote -v
 git fetch upstream
 git merge upstream/main
 ```
-### Composer
-Abhängigkeiten installieren:
+2. Composer abhängigkeiten installieren:
 ```
 composer install --ignore-platform-reqs --no-interaction --no-scripts --prefer-dist
 ```
 
-### Node Package Manager
-Abhängigkeiten installieren und Build-Prozesses ausführen:
+3. Node Package Manager abhängigkeiten installieren und Build-Prozesses ausführen:
 ```
 npm install
 npm run build
 ```
 
-### Laravel
-Env erstellen und anpassen:
+4. Laravel .env erstellen und anpassen:
 ```
 cp .env.example .env
 ```
 
-Laravel Basis installation durchführen:
+5. Laravel Basis installation durchführen:
 ```
 php artisan key:generate
 php artisan migrate
@@ -35,8 +31,7 @@ php artisan db:seed
 php artisan storage:link
 ```
 
-### Git
-Upstream Repository auf Github pushen:
+6. Upstream Repository auf Github pushen:
 ```
 git push origin main
 ```
@@ -48,9 +43,14 @@ git push origin main
 git reset --soft <commit-id>
 git push origin main --force
 ```
+2. Datenbank erneuern und seeden:
+```
+php artisan migrate:refresh --seed
+```
+
 
 ## Erweiterungen & Funktionen
-### saasykit/saasykit: Blog und Roadmap entfernen
+### Blog und Roadmap aus saasykit/saasykit entfernen
 Die folgenden Dateien und Verzeichnisse werden entfernt:
 ```
 app\Constants\RoadmapItemStatus.php
@@ -177,4 +177,13 @@ vite.config.js
 - 'resources/js/blog.js',
 ```
 
-### 
+### User Seeder
+Erstellt den admin und user@pornmgr.com Benutzer
+```
++ database\seeders\UserSeeder.php
+
+database\seeders\DatabaseSeeder.php
++ UserSeeder::class,
+
+- app\Console\Commands\CreateAdminUser.php
+```
