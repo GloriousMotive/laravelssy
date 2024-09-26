@@ -69,6 +69,22 @@ php artisan event:list
 php artisan make:listener Dummy --event=Illuminate\Auth\Events\Login
 ```
 
+7. Test hinzufügen
+```
+php artisan make:test UserTest
+php artisan make:test UserTest --unit
+```
+
+8. Test durchführen
+```
+php artisan test
+```
+
+9. Nur Custom Feature Tests durchführen
+```
+php artisan test --testsuite=Feature --stop-on-failure --filter='Custom'
+```
+
 ## Erweiterungen & Funktionen
 ### Blog und Roadmap aus saasykit/saasykit entfernen
 Die folgenden Dateien und Verzeichnisse werden entfernt:
@@ -214,6 +230,11 @@ app\Http\Controllers\Auth\LoginController.php
 + return redirect()->route('filament.dashboard.pages.dashboard');
 ```
 
+Test
+```
+tests\Feature\Custom\RedirectAfterLoginTest.php
+```
+
 ### Localization
 Middleware hinzufügen und registieren
 ```
@@ -251,4 +272,9 @@ Listener erstellen
 ```
 + app\Listeners\SetLocaleAfterLogin.php
 + app\Listeners\SetLocaleAfterRegistered.php
+```
+
+Test
+```
+tests\Feature\Custom\LocaleTest.php
 ```
