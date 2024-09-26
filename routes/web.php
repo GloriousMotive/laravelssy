@@ -19,9 +19,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Guest routes
+
 Route::get('/', function () {
     return view('home');
 })->name('home')->middleware('sitemapped');
+
+Route::get('/terms-of-service', function () {
+    return view('pages.terms-of-service');
+})->name('terms-of-service')->middleware('sitemapped');
+
+Route::get('/privacy-policy', function () {
+    return view('pages.privacy-policy');
+})->name('privacy-policy')->middleware('sitemapped');
+
+// Auth routes
 
 Auth::routes();
 
@@ -58,6 +70,8 @@ Route::get('/auth/{provider}/callback', [OAuthController::class, 'callback'])
     ->where('provider', 'google|github|facebook|twitter-oauth-2|linkedin-openid|bitbucket|gitlab')
     ->name('auth.oauth.callback');
 
+// Subscription checkout routes
+
 Route::get('/checkout/plan/{planSlug}', [
     App\Http\Controllers\SubscriptionCheckoutController::class,
     'subscriptionCheckout',
@@ -92,15 +106,6 @@ Route::get('/subscription/change-plan-thank-you', [
     'success',
 ])->name('subscription.change-plan.thank-you')->middleware('auth');
 
-// blog
-
-Route::get('/terms-of-service', function () {
-    return view('pages.terms-of-service');
-})->name('terms-of-service')->middleware('sitemapped');
-
-Route::get('/privacy-policy', function () {
-    return view('pages.privacy-policy');
-})->name('privacy-policy')->middleware('sitemapped');
 
 // Product checkout routes
 
@@ -124,7 +129,7 @@ Route::get('/checkout/product/success', [
     'productCheckoutSuccess',
 ])->name('checkout.product.success')->middleware('auth');
 
-// Invoice
+// Invoice routes
 
 Route::get('/invoice/generate/{transactionUuid}', [
     App\Http\Controllers\InvoiceController::class,
