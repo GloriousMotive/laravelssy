@@ -60,6 +60,8 @@ class LoginController extends Controller
                 'email' => 'Your account has been blocked. Please contact support.',
             ]);
         }
+
+        return redirect()->route('filament.dashboard.pages.dashboard');
     }
 
     protected function validateLogin(Request $request)

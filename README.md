@@ -187,3 +187,9 @@ database\seeders\DatabaseSeeder.php
 
 - app\Console\Commands\CreateAdminUser.php
 ```
+
+### Redirect zum Dashboard nach dem Login
+```
+app\Http\Controllers\Auth\LoginController.php
++ return redirect()->route('filament.dashboard.pages.dashboard');
+```
