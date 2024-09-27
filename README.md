@@ -37,6 +37,12 @@ git push origin main
 ```
 
 ## Spickzettel
+### Erweiterungen
+- SaaSykit: [SaaSykit](https://saasykit.com/)
+- filament: [filament/filament](https://filamentphp.com/)
+- Laravel: [laravel/laravel](https://laravel.com/)
+- Profile: [jeffgreco13/filament-breezy](https://github.com/jeffgreco13/filament-breezy)
+
 ### Git
 1. Repository auf Commit zurücksetzen:
 ```
@@ -86,6 +92,7 @@ php artisan test --testsuite=Feature --stop-on-failure --filter='Custom'
 ```
 
 ## Erweiterungen & Funktionen
+
 ### Blog und Roadmap aus saasykit/saasykit entfernen
 Die folgenden Dateien und Verzeichnisse werden entfernt:
 ```
@@ -286,4 +293,26 @@ resources\views\checkout\product-thank-you.blade.php
 
 resources\views\checkout\subscription-thank-you.blade.php
 + <x-button-link.primary href="{{ route('filament.dashboard.pages.dashboard') }}" class="mt-4 mx-auto">
+```
+
+### Profiel Pfad von my-profile auf profile anpassen
+```
+app\Providers\Filament\DashboardPanelProvider.php
++ slug: 'profile'
+
+app\Providers\Filament\AdminPanelProvider.php
++ slug: 'profile'
+```
+
+### Profile Sprache auswählen
+```
++ app\Livewire\PersonalInfoForm.php
+
+app\Providers\Filament\DashboardPanelProvider.php
++ 'personal_info' => \App\Livewire\PersonalInfoForm::class,
+
+app\Providers\Filament\AdminPanelProvider.php
++ ->myProfileComponents([
++     'personal_info' => \App\Livewire\PersonalInfoForm::class,
++ ]),
 ```

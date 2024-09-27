@@ -70,12 +70,13 @@ class DashboardPanelProvider extends PanelProvider
                 BreezyCore::make()
                     ->myProfile(
                         shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)
-                        shouldRegisterNavigation: false, // Adds a main navigation item for the My Profile page (default = false)
+                        shouldRegisterNavigation: true, // Adds a main navigation item for the My Profile page (default = false)
                         hasAvatars: false, // Enables the avatar upload form component (default = false)
-                        slug: 'my-profile' // Sets the slug for the profile page (default = 'my-profile')
+                        slug: 'profile' // Sets the slug for the profile page (default = 'my-profile')
                     )
                     ->myProfileComponents([
                         \App\Livewire\AddressForm::class,
+                        'personal_info' => \App\Livewire\PersonalInfoForm::class,
                     ])
             ]);
     }
