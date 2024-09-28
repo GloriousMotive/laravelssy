@@ -42,6 +42,8 @@ git push origin main
 - filament: [filament/filament](https://filamentphp.com/)
 - Laravel: [laravel/laravel](https://laravel.com/)
 - Profile: [jeffgreco13/filament-breezy](https://github.com/jeffgreco13/filament-breezy)
+- Laravel Media Library: [spatie/laravel-medialibrary](https://spatie.be/docs/laravel-medialibrary/v11/introduction)
+- Media Library Manager: [ralphjsmit/laravel-filament-media-library](https://filamentphp.com/plugins/ralphjsmit-media-library-manager)
 
 ### Git
 1. Repository auf Commit zurücksetzen:
@@ -315,4 +317,71 @@ app\Providers\Filament\AdminPanelProvider.php
 + ->myProfileComponents([
 +     'personal_info' => \App\Livewire\PersonalInfoForm::class,
 + ]),
+```
+
+### Laravel Media Library
+Composer Paket installieren, Migration veröffentlichen und durchführen sowie Konfiguration veröffentlichen
+```
+composer require spatie/laravel-medialibrary --ignore-platform-reqs --no-interaction --no-scripts --prefer-dist
+
+php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="medialibrary-migrations"
+php artisan migrate
+
+php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="medialibrary-config"
+```
+
+### Media Library Manager
+Composer Paket konfigurieren
+```
+composer.json
++ "repositories": [
++     {
++         "type": "composer",
++         "url": "https://satis.ralphjsmit.com"
++     }
++ ]
+
+auth.json
++ {
++     "http-basic": {
++         "satis.ralphjsmit.com": {
++             "username": "info@valeum.ch",
++             "password": "37941d51-84d3-49a9-9d8d-b3bf03092703"
++         }
++     }
++ }
+
+.gitignore
+- auth.json
+```
+
+Composer Paket installieren, Migration veröffentlichen und durchführen
+```
+composer config --no-plugins allow-plugins.ralphjsmit/packages true
+
+composer require ralphjsmit/laravel-filament-media-library
+```
+
+```
+bootstrap\providers.php
++ RalphJSmit\Filament\MediaLibrary\FilamentMediaLibraryServiceProvider::class,
+```
+
+```
+php artisan vendor:publish --tag="filament-media-library-migrations"
+php artisan migrate
+```
+
+Template komponenten hinzufügen
+```
+resources\css\filament\admin\tailwind.config.js
++ './vendor/ralphjsmit/laravel-filament-media-library/resources/**/*.blade.php'
+
+resources\css\filament\dashboard\tailwind.config.js
++ './vendor/ralphjsmit/laravel-filament-media-library/resources/**/*.blade.php'
+```
+
+```
+app\Providers\Filament\DashboardPanelProvider.php
++ \RalphJSmit\Filament\MediaLibrary\FilamentMediaLibrary::make()
 ```
