@@ -304,6 +304,9 @@ app\Providers\Filament\DashboardPanelProvider.php
 
 app\Providers\Filament\AdminPanelProvider.php
 + slug: 'profile'
+
+app\Filament\Dashboard\Resources\TransactionResource.php
++ ->url(route('filament.dashboard.pages.profile'))
 ```
 
 ### Profile Sprache auswählen
