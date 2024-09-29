@@ -79,6 +79,8 @@ class DashboardPanelProvider extends PanelProvider
                         'personal_info' => \App\Livewire\PersonalInfoForm::class,
                     ]),
                 \RalphJSmit\Filament\MediaLibrary\FilamentMediaLibrary::make()
+                    ->modelItem(\App\Models\MediaLibraryItem::class)
+                    ->modelFolder(\App\Models\MediaLibraryFolder::class),
             ]);
     }
 }

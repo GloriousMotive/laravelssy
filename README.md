@@ -319,7 +319,7 @@ app\Providers\Filament\AdminPanelProvider.php
 + ]),
 ```
 
-### Laravel Media Library
+### Init Laravel Media Library
 Composer Paket installieren, Migration veröffentlichen und durchführen sowie Konfiguration veröffentlichen
 ```
 composer require spatie/laravel-medialibrary --ignore-platform-reqs --no-interaction --no-scripts --prefer-dist
@@ -330,7 +330,7 @@ php artisan migrate
 php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="medialibrary-config"
 ```
 
-### Media Library Manager
+### Init Media Library Manager
 Composer Paket konfigurieren
 ```
 composer.json
@@ -384,4 +384,20 @@ resources\css\filament\dashboard\tailwind.config.js
 ```
 app\Providers\Filament\DashboardPanelProvider.php
 + \RalphJSmit\Filament\MediaLibrary\FilamentMediaLibrary::make()
+```
+
+### Media Library Manager Items und Folder auf User einschränken
+```
++ database\migrations\2024_09_28_073814_add_created_by_user_id_column_to_filament_media_library_folders_table.php
+
++ app\Models\MediaLibraryItem.php
++ app\Models\MediaLibraryFolder.php
+
+app\Providers\Filament\DashboardPanelProvider.php
++ ->modelItem(\App\Models\MediaLibraryItem::class)
++ ->modelFolder(\App\Models\MediaLibraryFolder::class)
+
+app\Providers\Filament\AdminPanelProvider.php
++ ->modelItem(\App\Models\MediaLibraryItem::class)
++ ->modelFolder(\App\Models\MediaLibraryFolder::class)
 ```
