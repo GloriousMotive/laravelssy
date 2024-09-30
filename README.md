@@ -429,3 +429,11 @@ config\livewire.php
 + app\Filament\Dashboard\Pages\MediaItemPage.php
 + resources\views\filament\dashboard\pages\media-item-page.blade.php
 ```
+
+### Media Library Manager View pfad ändern
+```
++ app\Livewire\MediaInfo.php
+
+app\Providers\Filament\DashboardPanelProvider.php
++ ->mediaInfoComponent(\App\Livewire\MediaInfo::class)
+```

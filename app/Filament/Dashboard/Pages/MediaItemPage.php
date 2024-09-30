@@ -4,7 +4,6 @@ namespace App\Filament\Dashboard\Pages;
 
 use Filament\Pages\Page;
 use App\Models\MediaLibraryItem;
-use Illuminate\Support\Facades\View;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class MediaItemPage extends Page
@@ -20,15 +19,10 @@ class MediaItemPage extends Page
 
     public function mount($uuid): void
     {
-        $this->media = Media::where('uuid', $uuid)->firstOrFail();
+        $this->item = MediaLibraryItem::findOrFail($uuid);
+        $this->media = $this->item->getItem();
 
-        $this->item = $this->media->model;
-
-        if (! $this->item instanceof MediaLibraryItem) {
-            abort(403); // Forbidden
-        }
-
-        if ($this->item->uploaded_by_user_id !== auth()->user()->id) {
+        if (! $this->media instanceof Media) {
             abort(403); // Forbidden
         }
     }

@@ -81,8 +81,13 @@ class DashboardPanelProvider extends PanelProvider
                 \RalphJSmit\Filament\MediaLibrary\FilamentMediaLibrary::make()
                     ->modelItem(\App\Models\MediaLibraryItem::class)
                     ->modelFolder(\App\Models\MediaLibraryFolder::class)
+                    ->mediaInfoComponent(\App\Livewire\MediaInfo::class)
                     ->acceptImage()
-                    ->acceptVideo(),
+                    ->acceptVideo()
+                    ->slug('media-library')
+                    ->pageTitle('Media Library')
+                    ->navigationLabel('Media Library')
+                    ->navigationGroup(''),
             ]);
     }
 }
