@@ -362,7 +362,7 @@ Composer Paket installieren, Migration veröffentlichen und durchführen
 ```
 composer config --no-plugins allow-plugins.ralphjsmit/packages true
 
-composer require ralphjsmit/laravel-filament-media-library
+composer require ralphjsmit/laravel-filament-media-library --ignore-platform-reqs --no-interaction --no-scripts --prefer-dist
 ```
 
 ```
@@ -403,4 +403,23 @@ app\Providers\Filament\DashboardPanelProvider.php
 app\Providers\Filament\AdminPanelProvider.php
 + ->modelItem(\App\Models\MediaLibraryItem::class)
 + ->modelFolder(\App\Models\MediaLibraryFolder::class)
+```
+
+### FFMPEG Installieren und konfigurieren
+```
+https://github.com/BtbN/FFmpeg-Builds/releases
+C:\xampp\ffmpeg
+Add to Path Variable
+
+composer require php-ffmpeg/php-ffmpeg --ignore-platform-reqs --no-interaction --no-scripts --prefer-dist
+
+.env
++ FFMPEG_PATH="C:\\xampp\\ffmpeg\\ffmpeg.exe"
++ FFPROBE_PATH="C:\\xampp\\ffmpeg\\ffprobe.exe"
+
+config\media-library.php
++ 'max_file_size' => 1024 * 1024 * 10000, // 10GB
+
+config\livewire.php
++ 'rules' => ['required', 'file', 'max:10240000'], // 10GB
 ```

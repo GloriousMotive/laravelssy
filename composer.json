@@ -34,6 +34,7 @@
         "livewire/livewire": "^3.5",
         "mews/purifier": "^3.4",
         "mpociot/versionable": "^4.4",
+        "php-ffmpeg/php-ffmpeg": "^1.2",
         "ralphjsmit/laravel-filament-media-library": "^3.8.29",
         "resend/resend-php": "^0.12.0",
         "saasykit/filament-country-field": "^1.0",
