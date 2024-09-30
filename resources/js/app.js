@@ -22,10 +22,10 @@ function assignTabSliderEvents() {
         let panels = tabSlider.querySelectorAll(".tab-panel")
 
         tabs.forEach(tab => {
-            tab.addEventListener("click", ()=>{
+            tab.addEventListener("click", () => {
                 let tabTarget = tab.getAttribute("aria-controls")
                 // set all tabs as not active
-                tabs.forEach(tab =>{
+                tabs.forEach(tab => {
                     tab.setAttribute("data-active-tab", "false")
                     tab.setAttribute("aria-selected", "false")
                 })
@@ -34,9 +34,9 @@ function assignTabSliderEvents() {
                 tab.setAttribute("data-active-tab", "true")
                 tab.setAttribute("aria-selected", "true")
 
-                panels.forEach(panel =>{
+                panels.forEach(panel => {
                     let panelId = panel.getAttribute("id")
-                    if(tabTarget === panelId){
+                    if (tabTarget === panelId) {
                         panel.classList.remove("hidden", "opacity-0")
                         panel.classList.add("block", "opacity-100")
                         // animate panel fade in

@@ -5,7 +5,17 @@
             Ihr Browser unterstützt das Video-Tag nicht.
         </video>
     @elseif ($isImage)
-        <img src="{{ $media->getUrl() }}" alt="{{ $media->name }}">
+        @push('styles')
+            @vite(['resources/css/fancyapps.css'])
+        @endpush
+
+        @push('scripts')
+            @vite(['resources/js/fancyapps.js'])
+        @endpush
+
+        <a href="{{ $media->getUrl() }}" data-fancybox="single" data-caption="Single image">
+            <img src="{{ $media->getUrl() }}" />
+        </a>
     @else
         <p>Dieser Medientyp wird nicht unterstützt.</p>
     @endif

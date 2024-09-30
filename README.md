@@ -437,3 +437,12 @@ config\livewire.php
 app\Providers\Filament\DashboardPanelProvider.php
 + ->mediaInfoComponent(\App\Livewire\MediaInfo::class)
 ```
+
+### Init fancyapps
+```
+npm install --save @fancyapps/ui
+
++ resources\js\fancyapps.js
++ resources\css\fancyapps.css
++ resources\views\filament\dashboard\pages\media-item-page.blade.php
+```
