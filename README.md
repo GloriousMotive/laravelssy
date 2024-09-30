@@ -423,3 +423,9 @@ config\media-library.php
 config\livewire.php
 + 'rules' => ['required', 'file', 'max:10240000'], // 10GB
 ```
+
+### Medien darstellen
+```
++ app\Filament\Dashboard\Pages\MediaItemPage.php
++ resources\views\filament\dashboard\pages\media-item-page.blade.php
+```
