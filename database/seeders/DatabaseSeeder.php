@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
             EmailProviderSeeder::class,
             UserSeeder::class,
+            ProductsPlansAndPricesSeeder::class,
         ]);
     }
 }

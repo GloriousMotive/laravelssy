@@ -455,3 +455,21 @@ npm install --save video.js
 + resources\css\videojs.css
 + resources\views\filament\dashboard\pages\media-item-page.blade.php
 ```
+
+### Produkte, Plans und Preis seeder
+```
++ database\seeders\ProductsPlansAndPricesSeeder.php
+
+database\seeders\DatabaseSeeder.php
++ ProductsPlansAndPricesSeeder::class,
+```
+
+### Plans Page
+```
++ app\View\Components\Filament\PlansCustom\All.php
++ resources\views\components\filament\plans-custom\all.blade.php
++ resources\views\components\filament\plans-custom\one.blade.php
+
++ app\Filament\Dashboard\Pages\PlansPage.php
++ resources\views\filament\dashboard\pages\plans-page.blade.php
+```
