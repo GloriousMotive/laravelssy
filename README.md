@@ -446,3 +446,12 @@ npm install --save @fancyapps/ui
 + resources\css\fancyapps.css
 + resources\views\filament\dashboard\pages\media-item-page.blade.php
 ```
+
+### Init video.js
+```
+npm install --save video.js
+
++ resources\js\videojs.js
++ resources\css\videojs.css
++ resources\views\filament\dashboard\pages\media-item-page.blade.php
+```
