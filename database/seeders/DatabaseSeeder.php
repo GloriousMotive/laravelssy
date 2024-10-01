@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             EmailProviderSeeder::class,
             UserSeeder::class,
             ProductsPlansAndPricesSeeder::class,
+            ClearStorageSeeder::class,
         ]);
     }
 }

@@ -473,3 +473,11 @@ database\seeders\DatabaseSeeder.php
 + app\Filament\Dashboard\Pages\PlansPage.php
 + resources\views\filament\dashboard\pages\plans-page.blade.php
 ```
+
+### Storage bereinigen beim seeden
+```
++ database\seeders\ClearStorageSeeder.php
+
+database\seeders\DatabaseSeeder.php
++ ClearStorageSeeder::class,
+```
