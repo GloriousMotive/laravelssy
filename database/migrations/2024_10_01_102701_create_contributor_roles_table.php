@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('contributor_roles', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('created_by_user_id');
             $table->enum('type', ['performer', 'production']); // Enum for role type (Performer, Production)
             $table->string('name');
 

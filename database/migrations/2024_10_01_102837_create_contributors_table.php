@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('contributors', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('created_by_user_id');
             $table->integer('media_library_item_id')->nullable();
             $table->string('name');
             $table->foreignId('role_id')->constrained('contributor_roles')->cascadeOnDelete(); // Foreign key to contributor role

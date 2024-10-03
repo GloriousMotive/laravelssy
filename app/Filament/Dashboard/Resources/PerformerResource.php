@@ -191,7 +191,10 @@ class PerformerResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('role.name')
+                    ->relationship('role', 'name', fn(Builder $query) => $query->where('type', 'performer'))
+                    ->multiple()
+                    ->preload()
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
