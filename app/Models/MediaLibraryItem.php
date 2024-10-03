@@ -23,4 +23,20 @@ class MediaLibraryItem extends BaseMediaLibraryItem
     {
         return $this->belongsToMany(Contributor::class, 'contributor_filament_media_library');
     }
+
+    public function performers()
+    {
+        return $this->belongsToMany(Contributor::class, 'contributor_filament_media_library')
+            ->whereHas('role', function ($query) {
+                $query->where('type', 'performer');
+            });
+    }
+
+    public function producers()
+    {
+        return $this->belongsToMany(Contributor::class, 'contributor_filament_media_library')
+            ->whereHas('role', function ($query) {
+                $query->where('type', 'producers');
+            });
+    }
 }

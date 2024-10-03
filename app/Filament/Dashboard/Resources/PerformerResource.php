@@ -79,12 +79,6 @@ class PerformerResource extends Resource
                                     })
                                     ->columnSpan('full'),
 
-                                Forms\Components\MultiSelect::make('mediaLibraryItems')
-                                    ->relationship('mediaLibraryItems', 'caption')
-                                    ->label('Media Items')
-                                    ->required()
-                                    ->columnSpan('full'),
-
                                 Forms\Components\Group::make()
                                     ->schema(function (callable $get) {
                                         $contributorId = $get('id');
@@ -195,12 +189,6 @@ class PerformerResource extends Resource
                     ->label('Role')
                     ->sortable()
                     ->searchable(),
-
-                Tables\Columns\TextColumn::make('mediaLibraryItems.caption')
-                    ->label('Media Items')
-                    ->sortable()
-                    ->searchable()
-                    ->wrap(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('role.name')
@@ -250,12 +238,6 @@ class PerformerResource extends Resource
                                 Infolists\Components\TextEntry::make('role.name')
                                     ->label('Role')
                                     ->columnSpan('full'),
-
-                                Infolists\Components\TextEntry::make('mediaLibraryItems')
-                                    ->label('Media Items')
-                                    ->getStateUsing(function (Contributor $record) {
-                                        return $record->mediaLibraryItems->pluck('caption')->implode(', ');
-                                    }),
 
                                 Infolists\Components\Group::make()
                                     ->schema(function (Contributor $record) {
@@ -345,7 +327,9 @@ class PerformerResource extends Resource
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            RelationManagers\MediaLibraryItemRelationManager::class
+        ];
     }
 
     public static function getPages(): array

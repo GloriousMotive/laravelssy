@@ -90,18 +90,20 @@ class MediaLibraryItemResource extends Resource
                         \App\Infolists\Components\MediaEntry::make('id')
                             ->label(''),
                     ]),
+                /*
                 Infolists\Components\TextEntry::make('id'),
                 Infolists\Components\TextEntry::make('uploaded_by_user_id'),
                 Infolists\Components\TextEntry::make('caption'),
                 Infolists\Components\TextEntry::make('alt_text'),
                 Infolists\Components\TextEntry::make('folder_id')
+                */
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\PerformersRelationManager::class,
         ];
     }
 
