@@ -2,7 +2,9 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 import common from './tailwind.common.js'
 
 export default {
-    plugins: [require("daisyui")],
+    plugins: [
+        require("daisyui")
+    ],
     daisyui: {
         themes: ["light"],
     },

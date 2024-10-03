@@ -9,7 +9,9 @@ export default {
         './resources/views/livewire/**/*.blade.php',
         './resources/views/components/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
-        './vendor/ralphjsmit/laravel-filament-media-library/resources/**/*.blade.php'
+        './vendor/ralphjsmit/laravel-filament-media-library/resources/**/*.blade.php',
+        './resources/views/infolists/**/*.blade.php',
+        './resources/views/forms/**/*.blade.php',
     ],
     input: [
         'resources/css/filament/dashboard/theme.css',

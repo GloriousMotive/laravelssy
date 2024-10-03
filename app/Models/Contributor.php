@@ -4,8 +4,9 @@ namespace App\Models;
 
 use App\Models\ContributorMeta;
 use App\Models\ContributorRole;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\MediaLibraryItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Contributor extends Model
@@ -39,6 +40,11 @@ class Contributor extends Model
     public function metas()
     {
         return $this->hasMany(ContributorMeta::class, 'contributor_id');
+    }
+
+    public function mediaLibraryItems()
+    {
+        return $this->belongsToMany(MediaLibraryItem::class, 'contributor_filament_media_library');
     }
 
     public function getImageUrlAttribute()

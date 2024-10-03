@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Contributor;
 use Illuminate\Database\Eloquent\Builder;
 use RalphJSmit\Filament\MediaLibrary\Media\Models\MediaLibraryItem as BaseMediaLibraryItem;
 
@@ -16,5 +17,10 @@ class MediaLibraryItem extends BaseMediaLibraryItem
                 $query->where('uploaded_by_user_id', auth()->user()->id);
             });
         }
+    }
+
+    public function contributors()
+    {
+        return $this->belongsToMany(Contributor::class, 'contributor_filament_media_library');
     }
 }

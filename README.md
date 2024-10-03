@@ -506,3 +506,19 @@ database\seeders\DatabaseSeeder.php
 + app\Filament\Dashboard\Resources\PerformerResource.php
 + app\Filament\Dashboard\Resources\PerformerResource\*
 ```
+
+### MediaLibraryItem Ressource
+```
++ app\Filament\Dashboard\Resources\MediaLibraryItemResource.php
++ app\Filament\Dashboard\Resources\MediaLibraryItemResource\*
+
++ app\Forms\Components\MediaField.php
++ resources\views\forms\components\media-field.blade.php
+
++ app\Infolists\Components\MediaEntry.php
++ resources\views\infolists\components\media-entry.blade.php
+
+resources\css\filament\dashboard\tailwind.config.js
++ './resources/views/infolists/**/*.blade.php',
++ './resources/views/forms/**/*.blade.php',
+```
