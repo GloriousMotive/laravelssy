@@ -5,9 +5,9 @@ namespace App\Filament\Dashboard\Pages;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 
-class PlansPage extends Page
+class Plans extends Page
 {
-    protected static string $view = 'filament.dashboard.pages.plans-page';
+    protected static string $view = 'filament.dashboard.pages.plans';
 
     // Slug
     protected static ?string $slug = 'plans';
