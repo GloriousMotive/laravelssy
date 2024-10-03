@@ -19,8 +19,26 @@ class MediaLibraryItemResource extends Resource
 {
     protected static ?string $model = MediaLibraryItem::class;
 
+    // Slug
+    protected static ?string $slug = 'media';
+
+    // Navigration Group
+    public static function getNavigationGroup(): ?string
+    {
+        return '';
+    }
+
+    // Navigration
+    protected static ?int $navigationSort = 30;
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getModelLabel(): string
+    {
+        return __('Media');
+    }
+
+    // Form
     public static function form(Form $form): Form
     {
         return $form

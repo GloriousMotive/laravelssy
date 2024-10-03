@@ -17,20 +17,26 @@ class ContributorRoleResource extends Resource
 {
     protected static ?string $model = ContributorRole::class;
 
-    protected static ?string $slug = 'roles-and-fields';
+    // Slug
+    protected static ?string $slug = 'roles-and-attributes';
 
-    protected static ?string $navigationIcon = 'heroicon-o-square-3-stack-3d';
-
-    public static function getNavigationLabel(): string
+    // Navigration Group
+    public static function getNavigationGroup(): ?string
     {
-        return __('Roles and Fields');
+        return __('Settings');
     }
+
+    // Navigration
+    protected static ?int $navigationSort = 80;
+
+    protected static ?string $navigationIcon = '';
 
     public static function getModelLabel(): string
     {
-        return __('Roles and Fields');
+        return __('Roles and Attributes');
     }
 
+    // Form
     public static function form(Form $form): Form
     {
         return $form

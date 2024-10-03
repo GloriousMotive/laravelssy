@@ -22,20 +22,26 @@ class PerformerResource extends Resource
 {
     protected static ?string $model = Contributor::class;
 
+    // Slug
     protected static ?string $slug = 'performers';
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
-
-    public static function getNavigationLabel(): string
+    // Navigration Group
+    public static function getNavigationGroup(): ?string
     {
-        return __('Performers');
+        return '';
     }
+
+    // Navigration
+    protected static ?int $navigationSort = 40;
+
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function getModelLabel(): string
     {
         return __('Performers');
     }
 
+    // Form
     private static function setMetaValue(callable $set, $metaField, $metaValue)
     {
         if ($metaValue !== null) {

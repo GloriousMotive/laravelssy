@@ -21,14 +21,30 @@ class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    // Slug
+    protected static ?string $slug = 'orders';
 
+    // Navigration Group
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Settings');
+    }
+
+    // Navigration
+    protected static ?int $navigationSort = 91;
+
+    protected static ?string $navigationIcon = '';
+
+    public static function getModelLabel(): string
+    {
+        return __('Orders');
+    }
+
+    // Form
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-
-            ]);
+            ->schema([]);
     }
 
     public static function table(Table $table): Table
@@ -52,7 +68,8 @@ class OrderResource extends Resource
                     ->formatStateUsing(
                         function (string $state, $record, OrderStatusMapper $mapper) {
                             return $mapper->mapForDisplay($state);
-                        })
+                        }
+                    )
                     ->searchable(),
                 Tables\Columns\TextColumn::make('updated_at')->label(__('Updated At'))
                     ->dateTime(config('app.datetime_format'))
@@ -64,9 +81,7 @@ class OrderResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
             ])
-            ->bulkActions([
-
-            ])->defaultSort('updated_at', 'desc');
+            ->bulkActions([])->defaultSort('updated_at', 'desc');
     }
 
     public static function infolist(Infolist $infolist): Infolist
@@ -99,7 +114,7 @@ class OrderResource extends Resource
                                             }
 
                                             return money($state, $record->currency->code);
-                                        })->visible(fn (Order $record): bool => $record->discounts()->count() > 0),
+                                        })->visible(fn(Order $record): bool => $record->discounts()->count() > 0),
                                         TextEntry::make('total_tax_amount')->getStateUsing(function ($record) {
                                             if ($record->transactions()->count() > 0) {
                                                 $transaction = $record->transactions()->first();
@@ -110,13 +125,13 @@ class OrderResource extends Resource
                                             return money(0, $record->currency->code);
                                         }),
                                         TextEntry::make('status')
-                                            ->formatStateUsing(fn (string $state, OrderStatusMapper $mapper): string => $mapper->mapForDisplay($state))
+                                            ->formatStateUsing(fn(string $state, OrderStatusMapper $mapper): string => $mapper->mapForDisplay($state))
                                             ->badge(),
                                         TextEntry::make('discounts.amount')
-                                            ->hidden(fn (Order $record): bool => $record->discounts()->count() === 0)
+                                            ->hidden(fn(Order $record): bool => $record->discounts()->count() === 0)
                                             ->formatStateUsing(function (string $state, $record) {
                                                 if ($record->discounts[0]->type === DiscountConstants::TYPE_PERCENTAGE) {
-                                                    return $state.'%';
+                                                    return $state . '%';
                                                 }
 
                                                 return money($state, $record->discounts[0]->code);
@@ -135,7 +150,6 @@ class OrderResource extends Resource
                     ]),
 
             ]);
-
     }
 
     public static function orderItems(Order $order): array
@@ -148,10 +162,10 @@ class OrderResource extends Resource
                 return $item->oneTimeProduct->name;
             })
                 ->schema([
-                    TextEntry::make('items.quantity_'.$i)->getStateUsing(fn () => $item->quantity)->label(__('Quantity')),
-                    TextEntry::make('items.price_per_unit_'.$i)->getStateUsing(fn () => money($item->price_per_unit, $order->currency->code))->label(__('Price Per Unit')),
-                    TextEntry::make('items.price_per_unit_after_discount_'.$i)->getStateUsing(fn () => money($item->price_per_unit_after_discount, $order->currency->code))->label(__('Price Per Unit After Discount')),
-                    TextEntry::make('items.discount_per_unit_'.$i)->getStateUsing(fn () => money($item->discount_per_unit, $order->currency->code))->label(__('Discount Per Unit')),
+                    TextEntry::make('items.quantity_' . $i)->getStateUsing(fn() => $item->quantity)->label(__('Quantity')),
+                    TextEntry::make('items.price_per_unit_' . $i)->getStateUsing(fn() => money($item->price_per_unit, $order->currency->code))->label(__('Price Per Unit')),
+                    TextEntry::make('items.price_per_unit_after_discount_' . $i)->getStateUsing(fn() => money($item->price_per_unit_after_discount, $order->currency->code))->label(__('Price Per Unit After Discount')),
+                    TextEntry::make('items.discount_per_unit_' . $i)->getStateUsing(fn() => money($item->discount_per_unit, $order->currency->code))->label(__('Discount Per Unit')),
                 ])
                 ->columns(4);
 

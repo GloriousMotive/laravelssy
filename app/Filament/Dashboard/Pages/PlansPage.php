@@ -7,19 +7,30 @@ use Illuminate\Contracts\Support\Htmlable;
 
 class PlansPage extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
-
     protected static string $view = 'filament.dashboard.pages.plans-page';
 
-    public function getTitle(): string | Htmlable
+    // Slug
+    protected static ?string $slug = 'plans';
+
+    // Navigration Group
+    public static function getNavigationGroup(): ?string
     {
-        return __('Plans');
+        return __('Settings');
     }
+
+    // Navigration
+    protected static ?int $navigationSort = 90;
+
+    protected static ?string $navigationIcon = '';
 
     public static function getNavigationLabel(): string
     {
         return __('Plans');
     }
 
-    protected static ?string $slug = 'plans';
+    // Title
+    public function getTitle(): string | Htmlable
+    {
+        return __('Plans');
+    }
 }

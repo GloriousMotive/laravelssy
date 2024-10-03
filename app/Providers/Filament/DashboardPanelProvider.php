@@ -8,6 +8,8 @@ use Filament\Widgets;
 use Filament\PanelProvider;
 use Filament\Navigation\MenuItem;
 use Filament\Support\Colors\Color;
+use Filament\Navigation\NavigationItem;
+use Filament\Navigation\NavigationGroup;
 use Filament\Http\Middleware\Authenticate;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
 use Illuminate\Session\Middleware\StartSession;
@@ -39,6 +41,20 @@ class DashboardPanelProvider extends PanelProvider
                     ->url(fn() => route('filament.admin.pages.dashboard'))
                     ->icon('heroicon-s-cog-8-tooth'),
             ])
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label(fn(): string => __('Settings'))
+                    ->icon('heroicon-o-cog-6-tooth')
+                    ->collapsed(),
+            ])
+            ->navigationItems([
+                NavigationItem::make('Profile')
+                    ->label(fn(): string => __('Profile'))
+                    ->group(fn(): string => __('Settings'))
+                    ->icon('')
+                    ->url(fn(): string => \Jeffgreco13\FilamentBreezy\Pages\MyProfilePage::getUrl())
+                    ->isActiveWhen(fn() => request()->routeIs('filament.dashboard.pages.profile')),
+            ])
             ->discoverResources(in: app_path('Filament/Dashboard/Resources'), for: 'App\\Filament\\Dashboard\\Resources')
             ->discoverPages(in: app_path('Filament/Dashboard/Pages'), for: 'App\\Filament\\Dashboard\\Pages')
             ->pages([
@@ -69,10 +85,11 @@ class DashboardPanelProvider extends PanelProvider
             ])->plugins([
                 BreezyCore::make()
                     ->myProfile(
-                        shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)
-                        shouldRegisterNavigation: true, // Adds a main navigation item for the My Profile page (default = false)
-                        hasAvatars: false, // Enables the avatar upload form component (default = false)
-                        slug: 'profile' // Sets the slug for the profile page (default = 'my-profile')
+                        shouldRegisterUserMenu: true,
+                        shouldRegisterNavigation: false,
+                        hasAvatars: false,
+                        slug: 'profile',
+                        navigationGroup: 'Settings',
                     )
                     ->myProfileComponents([
                         \App\Livewire\AddressForm::class,
@@ -87,7 +104,9 @@ class DashboardPanelProvider extends PanelProvider
                     ->slug('media-library')
                     ->pageTitle('Media Library')
                     ->navigationLabel('Media Library')
-                    ->navigationGroup(''),
+                    ->navigationIcon('heroicon-o-folder-arrow-down')
+                    ->navigationGroup('')
+                    ->navigationSort(20),
             ]);
     }
 }
