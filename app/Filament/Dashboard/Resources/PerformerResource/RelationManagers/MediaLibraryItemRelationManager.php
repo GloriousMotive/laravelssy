@@ -57,7 +57,6 @@ class MediaLibraryItemRelationManager extends RelationManager
                     ->multiple(),
             ])
             ->actions([
-                //Tables\Actions\ViewAction::make(),
                 Tables\Actions\Action::make('view')
                     ->label('View')
                     ->url(fn($record) => route('filament.dashboard.resources.media-library-items.view', $record)),

@@ -56,6 +56,15 @@ class MediaLibraryItemResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('media_library_item_id')
+                    ->label('Image')
+                    ->getStateUsing(function ($record) {
+                        return $record ? $record->getItem()->getUrl('thumb') : null;
+                    })
+                    ->label('Image')
+                    ->square()
+                    ->size(50),
+
                 Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('uploaded_by_user_id'),
                 Tables\Columns\TextColumn::make('caption'),

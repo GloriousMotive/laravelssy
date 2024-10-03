@@ -57,6 +57,10 @@ class PerformersRelationManager extends RelationManager
                     ->multiple(),
             ])
             ->actions([
+                Tables\Actions\Action::make('view')
+                    ->label('View')
+                    ->url(fn($record) => route('filament.dashboard.resources.performers.view', $record)),
+
                 Tables\Actions\DetachAction::make(),
             ])
             ->bulkActions([
