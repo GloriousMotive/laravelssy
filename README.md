@@ -481,3 +481,28 @@ database\seeders\DatabaseSeeder.php
 database\seeders\DatabaseSeeder.php
 + ClearStorageSeeder::class,
 ```
+
+### Tabellen und Models für Performers und Production
+```
++ database\migrations\2024_10_01_102701_create_contributor_roles_table.php
++ database\migrations\2024_10_01_102743_create_contributor_meta_fields_table.php
++ database\migrations\2024_10_01_102837_create_contributors_table.php
++ database\migrations\2024_10_01_102906_create_contributor_metas_table.php
+
++ app\Models\ContributorRole.php
++ app\Models\ContributorMetaField.php
++ app\Models\Contributor.php
++ app\Models\ContributorMeta.php
+```
+
+### Rolen und Felder
+```
++ app\Filament\Dashboard\Resources\ContributorRoleResource.php
++ app\Filament\Dashboard\Resources\ContributorRoleResource\*
+```
+
+### Performer
+```
++ app\Filament\Dashboard\Resources\PerformerResource.php
++ app\Filament\Dashboard\Resources\PerformerResource\*
+```

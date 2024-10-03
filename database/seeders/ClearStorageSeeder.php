@@ -36,8 +36,6 @@ class ClearStorageSeeder extends Seeder
             foreach ($directories as $dir) {
                 Storage::deleteDirectory($dir);
             }
-
-            $this->command->info('Alle Dateien und Verzeichnisse im public storage wurden gelöscht.');
         }
     }
 }
