@@ -1,4 +1,4 @@
-# pornmgr.com
+# SSy Larava
 ## Installation
 1. Um das SaasyKit als Basis zu verwenden, wird zuerst ein neues GitHub-Repository erstellt und anschließend das SaasyKit als Basis definiert:
 ```
